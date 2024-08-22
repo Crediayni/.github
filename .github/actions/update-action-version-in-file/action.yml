@@ -4,22 +4,24 @@ description: Updates each instance of the semantic version for an action in the 
 
 inputs:
   file-to-update:
-    description: 'The name of the file that should be updated with the new action version.  Defaults to README.md.'
+    description: "The name of the file that should be updated with the new action version.  Defaults to README.md."
     required: true
   action-name:
-    description: 'The name of the action.  Format should be org/repo and any nested directories if applicable.'
+    description: "The name of the action.  Format should be org/repo and any nested directories if applicable."
     required: true
   version-prefix:
-    description: 'The prefix the action uses in its versions, if used.  Defaults to `v`.'
-    default: 'v'
+    description: "The prefix the action uses in its versions, if used.  Defaults to `v`."
+    default: "v"
   updated-version:
-    description: 'The new action version to replace other instances with in the specified file.'
+    description: "The new action version to replace other instances with in the specified file."
     required: true
 
 outputs:
+  has-changes:
+    description: "A boolean indicating if the file was updated."
   updated-content:
-    description: 'The updated file content after replacements are made.'
+    description: "The updated file content after replacements are made."
 
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: "node20"
+  main: "dist/index.js"
