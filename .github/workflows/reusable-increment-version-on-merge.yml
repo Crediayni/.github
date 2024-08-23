@@ -33,7 +33,7 @@ jobs:
   increment-version:
     runs-on: ubuntu-latest
     env:
-      MERGE_TO_MAIN: 'false'
+      MERGE_TO_MAIN: "false"
 
     steps:
       - name: Check if merge to default branch
@@ -65,7 +65,7 @@ jobs:
       - name: If PR is merged to ${{ inputs.default-branch }} - Check for code changes to the action source code
         if: env.MERGE_TO_MAIN == 'true'
         id: source-code
-        uses: im-open/.github/.github/actions/did-custom-action-code-change@v1
+        uses: Crediayni/.github/.github/actions/did-custom-action-code-change@v1
         with:
           files-with-code: ${{ inputs.files-with-code}} # Default is 'action.yml,package.json,package-lock.json'
           folders-with-code: ${{ inputs.dirs-with-code }} # Default is 'src,dist'
@@ -89,7 +89,7 @@ jobs:
       - name: If PR is merged to ${{ inputs.default-branch }} & PR has source code changes - Get the next version for the repo
         if: env.MERGE_TO_MAIN == 'true' && steps.source-code.outputs.HAS_CHANGES == 'true'
         id: version
-        uses: im-open/git-version-lite@v2
+        uses: Crediayni/git-version-lite@v2
 
       - name: If PR is merged to ${{ inputs.default-branch }} & PR has source code changes - Print action version (${{ steps.version.outputs.NEXT_VERSION || 'N/A'}})
         if: env.MERGE_TO_MAIN == 'true' && steps.source-code.outputs.HAS_CHANGES == 'true'

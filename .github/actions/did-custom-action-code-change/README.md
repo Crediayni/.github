@@ -2,7 +2,7 @@
 
 This action outputs a flag indicating whether the changes in the PR were to code files and code folders so the build workflow knows whether the action version should be incremented or not. It does this by gathering the list of files and folders changed in a PR through the GH API. The action then compares that list against the list of `files-with-code` and `folders-with-code` to determine if any of those source code items were changed.
 
-This action isn't intended to be used as a standalone action.  It should be used within the reusable build workflows for im-open actions.
+This action isn't intended to be used as a standalone action.  It should be used within the reusable build workflows for Crediayni actions.
 
 ## Index <!-- omit in toc -->
 
@@ -15,7 +15,7 @@ This action isn't intended to be used as a standalone action.  It should be used
 ## Inputs
 
 | Parameter           | Is Required | Default | Description                                                       |
-|---------------------|-------------|---------|-------------------------------------------------------------------|
+| ------------------- | ----------- | ------- | ----------------------------------------------------------------- |
 | `files-with-code`   | false       | N/A     | A comma separated list of code files to check for changes.        |
 | `folders-with-code` | false       | N/A     | A comma separated list of folders with code to check for changes. |
 | `token`             | true        | N/A     | A token with permission to retrieve PR information.               |
@@ -23,7 +23,7 @@ This action isn't intended to be used as a standalone action.  It should be used
 ## Outputs and Environment Variables
 
 | Output                 | Description                                                                   |
-|------------------------|-------------------------------------------------------------------------------|
+| ---------------------- | ----------------------------------------------------------------------------- |
 | `outputs.HAS_CHANGES`  | Flag indicating whether changes were found in the code files or code folders. |
 | `env.CODE_HAS_CHANGED` | Flag indicating whether changes were found in the code files or code folders. |
 

@@ -2,7 +2,7 @@
 
 This action looks for usages of a specified GitHub action so it can update each instance with the latest version. It will return the updated content as an output and it can optionally save the changes to disk.
 
-This action isn't intended to be used as a standalone action.  It should be used within the reusable build workflows for im-open actions.
+This action isn't intended to be used as a standalone action.  It should be used within the reusable build workflows for Crediayni actions.
 
 ## Index <!-- omit in toc -->
 
@@ -14,17 +14,17 @@ This action isn't intended to be used as a standalone action.  It should be used
 
 ## Inputs
 
-| Parameter         | Is Required | Default | Description                                                                                                                                                                                                                  |
-|-------------------|-------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `file-to-update`  | true        |         | The name of the file that should be updated with the new action version.                                                                                                                                                     |
-| `action-name`     | true        |         | The name of the action that will be updated in the specified file. Format should be `org/repo` and any nested directories if applicable.</br>&nbsp;&nbsp;• `im-open/is-actor-authorized`</br>&nbsp;&nbsp;• `actions/aws/ec2` |
-| `version-prefix`  | false       | `v`     | The prefix the action uses in its versions, if applicable.                                                                                                                                                                   |
-| `updated-version` | true        |         | The new action version to replace other instances with in the specified file.                                                                                                                                                |
+| Parameter         | Is Required | Default | Description                                                                                                                                                                                                                    |
+| ----------------- | ----------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `file-to-update`  | true        |         | The name of the file that should be updated with the new action version.                                                                                                                                                       |
+| `action-name`     | true        |         | The name of the action that will be updated in the specified file. Format should be `org/repo` and any nested directories if applicable.</br>&nbsp;&nbsp;• `Crediayni/is-actor-authorized`</br>&nbsp;&nbsp;• `actions/aws/ec2` |
+| `version-prefix`  | false       | `v`     | The prefix the action uses in its versions, if applicable.                                                                                                                                                                     |
+| `updated-version` | true        |         | The new action version to replace other instances with in the specified file.                                                                                                                                                  |
 
 ## Outputs and Environment Variables
 
 | Output                    | Description                                                                         |
-|---------------------------|-------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------------------------------------------------------- |
 | `outputs.updated-content` | A copy of the original file content that has been updated with the new version.     |
 | `outputs.has-changes`     | Flag indicating whether or not version changes were detected in the specified file. |
 | `env.UPDATED_CONTENT`     | A copy of the original file content that has been updated with the new version.     |

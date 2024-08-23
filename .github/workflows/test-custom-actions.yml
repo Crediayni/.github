@@ -1,5 +1,5 @@
 name: Build and Review PR
-run-name: 'Build and Review PR #${{ github.event.pull_request.number }}'
+run-name: "Build and Review PR #${{ github.event.pull_request.number }}"
 
 on:
   # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
@@ -22,8 +22,8 @@ on:
   #   we can also use that to require all branches be up to date before they are merged.
 
 env:
-  DID_CUSTOM_ACTION_CODE_CHANGE_DIR: '.github/actions/did-custom-action-code-change'
-  UPDATE_ACTION_VERSION_IN_FILE_DIR: '.github/actions/update-action-version-in-file'
+  DID_CUSTOM_ACTION_CODE_CHANGE_DIR: ".github/actions/did-custom-action-code-change"
+  UPDATE_ACTION_VERSION_IN_FILE_DIR: ".github/actions/update-action-version-in-file"
   IS_FORK: ${{ github.event.pull_request.head.repo.fork }}
   PR_SOURCE: ${{ github.event.pull_request.head.repo.fork == true && 'fork' || 'branch' }}
 
@@ -35,8 +35,8 @@ jobs:
       HAS_CHANGES: ${{ env.HAS_CHANGES }}
 
     env:
-      ACTION_NAME: 'did-custom-action-code-change'
-      HAS_CHANGES: '' # Set in the Action Changed step below
+      ACTION_NAME: "did-custom-action-code-change"
+      HAS_CHANGES: "" # Set in the Action Changed step below
       NEEDS_BUILD_COMMIT: false # Set to true in a subsequent step if applicable
 
     steps:
@@ -50,8 +50,8 @@ jobs:
         id: did-custom-action-code-change
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          folders-with-code: '${{ env.DID_CUSTOM_ACTION_CODE_CHANGE_DIR }}'
-          files-with-code: ''
+          folders-with-code: "${{ env.DID_CUSTOM_ACTION_CODE_CHANGE_DIR }}"
+          files-with-code: ""
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Action Changed (open for details)
@@ -130,19 +130,19 @@ jobs:
     if: always()
 
     env:
-      ACTION_NAME: 'did-custom-action-code-change'
+      ACTION_NAME: "did-custom-action-code-change"
       HAS_CHANGES: ${{ needs.review-did-custom-action-code-change.outputs.HAS_CHANGES }}
-      CODE_HAS_CHANGED: ''
+      CODE_HAS_CHANGED: ""
       PR: 5
-      
-      PR5_FILE_FULL: '.github/actions/did-custom-action-code-change/action.yml'
-      PR5_FILE_SNIPPET: 'action.yml'
-      PR5_FILE_UNCHANGED: 'this-is-a-file-that-does-not-exist.md'
 
-      PR5_FOLDER_FULL: '.github/actions/did-custom-action-code-change'
-      PR5_FOLDER_SNIPPET: 'did-custom-action-code-change'
-      PR5_FOLDER_UNCHANGED: 'folder-that-does-not-exist'
-      
+      PR5_FILE_FULL: ".github/actions/did-custom-action-code-change/action.yml"
+      PR5_FILE_SNIPPET: "action.yml"
+      PR5_FILE_UNCHANGED: "this-is-a-file-that-does-not-exist.md"
+
+      PR5_FOLDER_FULL: ".github/actions/did-custom-action-code-change"
+      PR5_FOLDER_SNIPPET: "did-custom-action-code-change"
+      PR5_FOLDER_UNCHANGED: "folder-that-does-not-exist"
+
     steps:
       - name: Action Changed (open for details)
         run: |
@@ -160,7 +160,7 @@ jobs:
       # -------------------------------------------
       # SETUP
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: Setup - Checkout
@@ -170,7 +170,7 @@ jobs:
       # -------------------------------------------
       # FULL FILE PATH THAT MATCHES
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When checking the pr with a full file name that has changes
@@ -178,8 +178,8 @@ jobs:
         id: full-file
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          files-with-code: '${{ env.PR5_FILE_FULL}}'
-          folders-with-code: ''
+          files-with-code: "${{ env.PR5_FILE_FULL}}"
+          folders-with-code: ""
           token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ env.PR}}
 
@@ -197,7 +197,7 @@ jobs:
       # -------------------------------------------
       # SNIPPET OF FILE PATH THAT MATCHES
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When checking the pr with a snippet of a file name that has changes
@@ -205,8 +205,8 @@ jobs:
         id: file-snippet
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          files-with-code: '${{ env.PR5_FILE_SNIPPET }}'
-          folders-with-code: ''
+          files-with-code: "${{ env.PR5_FILE_SNIPPET }}"
+          folders-with-code: ""
           token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ env.PR}}
 
@@ -224,7 +224,7 @@ jobs:
       # -------------------------------------------
       # FILE PATH THAT DOES NOT MATCH
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When checking the pr with a file name that does not have changes
@@ -232,8 +232,8 @@ jobs:
         id: file-no-match
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          files-with-code: '${{ env.PR5_FILE_UNCHANGED}}'
-          folders-with-code: ''
+          files-with-code: "${{ env.PR5_FILE_UNCHANGED}}"
+          folders-with-code: ""
           token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ env.PR}}
 
@@ -251,7 +251,7 @@ jobs:
       # -------------------------------------------
       # FULL FOLDER PATH THAT MATCHES
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When checking the pr with a full folder path that has changes
@@ -259,8 +259,8 @@ jobs:
         id: folder-full
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          files-with-code: ''
-          folders-with-code: '${{ env.PR5_FOLDER_FULL }}'
+          files-with-code: ""
+          folders-with-code: "${{ env.PR5_FOLDER_FULL }}"
           token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ env.PR}}
 
@@ -278,7 +278,7 @@ jobs:
       # -------------------------------------------
       # SNIPPET OF FOLDER PATH THAT MATCHES
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When checking the pr with a snippet of a folder path that has changes
@@ -286,8 +286,8 @@ jobs:
         id: folder-snippet
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          files-with-code: ''
-          folders-with-code: '${{ env.PR5_FOLDER_SNIPPET }}'
+          files-with-code: ""
+          folders-with-code: "${{ env.PR5_FOLDER_SNIPPET }}"
           token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ env.PR}}
 
@@ -305,7 +305,7 @@ jobs:
       # -------------------------------------------
       # FOLDER PATH THAT DOES NOT MATCH
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When checking the pr with a folder that does not have changes
@@ -313,8 +313,8 @@ jobs:
         id: folder-no-match
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          files-with-code: ''
-          folders-with-code: '${{ env.PR5_FOLDER_UNCHANGED }}'
+          files-with-code: ""
+          folders-with-code: "${{ env.PR5_FOLDER_UNCHANGED }}"
           token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ env.PR}}
 
@@ -329,7 +329,7 @@ jobs:
           ./test/assert-values-match.sh --name "CODE_HAS_CHANGED" --expected "false" --actual "${{ env.CODE_HAS_CHANGED }}"
           echo "CODE_HAS_CHANGED=" >> $GITHUB_ENV
 
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
   review-update-action-version-in-file:
@@ -339,8 +339,8 @@ jobs:
       HAS_CHANGES: ${{ env.HAS_CHANGES }}
 
     env:
-      ACTION_NAME: 'update-action-version-in-file'
-      HAS_CHANGES: '' # Set in the Action Changed step below
+      ACTION_NAME: "update-action-version-in-file"
+      HAS_CHANGES: "" # Set in the Action Changed step below
       NEEDS_BUILD_COMMIT: false # Set to true in a subsequent step if applicable
 
     steps:
@@ -354,8 +354,8 @@ jobs:
         id: update-action-version-in-file
         uses: ./.github/actions/did-custom-action-code-change
         with:
-          folders-with-code: '${{ env.UPDATE_ACTION_VERSION_IN_FILE_DIR }}'
-          files-with-code: ''
+          folders-with-code: "${{ env.UPDATE_ACTION_VERSION_IN_FILE_DIR }}"
+          files-with-code: ""
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Action Changed (open for details)
@@ -434,7 +434,7 @@ jobs:
     if: always()
 
     env:
-      ACTION_NAME: 'update-action-version-in-file'
+      ACTION_NAME: "update-action-version-in-file"
       HAS_CHANGES: ${{ needs.review-update-action-version-in-file.outputs.HAS_CHANGES }}
 
     steps:
@@ -454,7 +454,7 @@ jobs:
       # -------------------------------------------
       # SETUP
       # -------------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: Setup - Checkout
@@ -464,7 +464,7 @@ jobs:
       #--------------------------------------
       # FILE HAS CHANGES
       #--------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When updating a file with a new action version
@@ -473,7 +473,7 @@ jobs:
         id: changes
         with:
           file-to-update: ./test/files/file-to-update.md
-          action-name: im-open/update-action-version-in-file
+          action-name: Crediayni/update-action-version-in-file
           version-prefix: p
           updated-version: v1.0.0
 
@@ -494,7 +494,7 @@ jobs:
       #--------------------------------------
       # FILE HAS NO CHANGES
       #--------------------------------------
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
 
       - name: When updating a file with a new action version
@@ -503,7 +503,7 @@ jobs:
         id: no-changes
         with:
           file-to-update: ./test/files/file-to-update.md
-          action-name: im-open/different-action-version
+          action-name: Crediayni/different-action-version
           version-prefix: v
           updated-version: v1.0.0
 
@@ -521,5 +521,5 @@ jobs:
           expectedContent=$(cat ./test/files/file-to-update.md)
           ./test/assert-values-match.sh --name "updated-content" --expected "$expectedContent" --actual "${{ steps.no-changes.outputs.updated-content }}"
 
-      - name: '-------------------------------------------------------------------------------------------------------'
+      - name: "-------------------------------------------------------------------------------------------------------"
         run: echo ""
